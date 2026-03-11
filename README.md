@@ -10,7 +10,6 @@ This repository contains the data collection and analysis code for a computation
 
 - [Overview](#overview)
 - [Repository Structure](#repository-structure)
-- [Pipeline](#pipeline)
 - [Scripts](#scripts)
 - [Requirements](#requirements)
 - [Usage](#usage)
@@ -48,46 +47,6 @@ Reddit communities provide a unique window into patient-reported experiences tha
 ├── analyse_donor.py       # Donor conception mention analysis
 ├── analyse_test.py        # Fertility test mention analysis
 └── track_users.py         # Longitudinal user activity analysis
-```
-
----
-
-## Pipeline
-
-The analysis follows this sequential pipeline:
-
-```
-Raw JSONL data (Reddit API / Pushshift)
-        │
-        ▼
-1. Data Extraction
-   posts.py  ──►  posts.csv
-   comments.py ──►  comments.csv
-        │
-        ▼
-2. Text Pre-processing
-   process_paragraph.py
-   (emoji handling, URL/email removal, abbreviation expansion,
-    spell-checking, lemmatisation, stop-word removal)
-        │
-        ▼
-3. Sentiment Analysis
-   analyse_sentiment.py  ──►  *_sentiment.csv
-        │
-        ▼
-4. Emotion Classification
-   emotion.py  ──►  *_sentiment_emotion.csv
-        │
-        ▼
-5. Downstream Analyses (parallel)
-   ├── topic_model_save.py   ──►  topic_models/
-   ├── generate_wordcloud.py ──►  wordclouds/
-   ├── shift_analysis.py     ──►  wordshift/
-   ├── extract_links.py      ──►  *_links.csv, *_link_counts.csv
-   ├── analyse_drug.py       ──►  drug_analysis_outputs/
-   ├── analyse_donor.py      ──►  donor_analysis_outputs/
-   ├── analyse_test.py       ──►  test_analysis_outputs/
-   └── track_users.py        ──►  user_activity_outputs/
 ```
 
 ---
